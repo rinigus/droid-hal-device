@@ -106,16 +106,17 @@ function buildversion() {
 }
 
 function yesno() {
-    read -r -p "${1:-} [Y/n]" REPLY
-    REPLY=${REPLY:-y}
-    case $REPLY in
-       [yY])
-       true
-       ;;
-    *)
-       false
-       ;;
-    esac
+    true
+#    read -r -p "${1:-} [Y/n]" REPLY
+#    REPLY=${REPLY:-y}
+#    case $REPLY in
+#       [yY])
+#       true
+#       ;;
+#    *)
+#       false
+#       ;;
+#    esac
 }
 
 function buildmw {
