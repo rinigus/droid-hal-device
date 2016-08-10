@@ -69,7 +69,7 @@ rm -rf $MER_ROOT/devel/mer-hybris
 mkdir -p $MER_ROOT/devel/mer-hybris
 pushd $MER_ROOT/devel/mer-hybris
 
-buildmw libhybris || die
+buildmw "https://github.com/rinigus/libhybris.git" || die
 sb2 -t $VENDOR-$DEVICE-$ARCH -R -msdk-install zypper -n rm mesa-llvmpipe
 buildmw "https://github.com/nemomobile/mce-plugin-libhybris.git" || die
 buildmw ngfd-plugin-droid-vibrator || die
