@@ -34,7 +34,7 @@
 
 source ~/.hadk.env
 
-ARCH="${ARCH:-armv7hl}"
+ARCH="${PORT_ARCH:-armv7hl}"
 
 function minfo {
     echo -e "\e[01;34m* $* \e[00m"
@@ -56,7 +56,7 @@ function die {
 function die_with_log {
     if [ -f "$1" ] ; then
         tail -n10 "$1"
-        minfo "Check `dirname $(pwd)`/`basename $1` for full log."
+        minfo "Check $1 for full log."
     fi
     shift
     die $*
@@ -135,7 +135,7 @@ function buildmw {
             minfo "No git url specified, assuming $GIT_URL"
         fi
 
-        cd "$MER_ROOT/devel/mer-hybris" || die
+        cd "$ANDROID_ROOT/hybris/mw" || die
         LOG="`pwd`/$PKG.log"
         [ -f "$LOG" ] && rm "$LOG"
 
@@ -188,7 +188,7 @@ function buildmwb {
             minfo "No git url specified, assuming $GIT_URL"
         fi
 
-        cd "$MER_ROOT/devel/mer-hybris" || die
+        cd "$ANDROID_ROOT/hybris/mw" || die
         LOG="`pwd`/$PKG.log"
         [ -f "$LOG" ] && rm "$LOG"
 

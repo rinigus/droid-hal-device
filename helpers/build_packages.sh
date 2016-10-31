@@ -65,19 +65,20 @@ sb2 -t $VENDOR-$DEVICE-$ARCH -R -msdk-install ssu dr sdk
 sb2 -t $VENDOR-$DEVICE-$ARCH -R -msdk-install zypper ref -f
 sb2 -t $VENDOR-$DEVICE-$ARCH -R -msdk-install zypper -n install droid-hal-$DEVICE-devel
 
-rm -rf $MER_ROOT/devel/mer-hybris
-mkdir -p $MER_ROOT/devel/mer-hybris
-pushd $MER_ROOT/devel/mer-hybris
+rm -rf $ANDROID_ROOT/hybris/mw
+mkdir -p $ANDROID_ROOT/hybris/mw
+pushd $ANDROID_ROOT/hybris/mw
 
 buildmw "https://github.com/rinigus/libhybris.git" || die
+#buildmw libhybris || die
 sb2 -t $VENDOR-$DEVICE-$ARCH -R -msdk-install zypper -n rm mesa-llvmpipe
 buildmw "https://github.com/nemomobile/mce-plugin-libhybris.git" || die
 buildmw ngfd-plugin-droid-vibrator || die
 buildmw "https://github.com/mer-hybris/pulseaudio-modules-droid.git" rpm/pulseaudio-modules-droid.spec || die
 buildmw qt5-feedback-haptics-droid-vibrator || die
-buildmw qt5-qpa-hwcomposer-plugin || die
+buildmwb qt5-qpa-hwcomposer-plugin qt-5.2 || die
 buildmw "https://github.com/mer-hybris/qtscenegraph-adaptation.git" rpm/qtscenegraph-adaptation-droid.spec || die
-buildmw "https://github.com/mer-packages/sensorfw.git" rpm/sensorfw-qt5-hybris.spec || die
+buildmw "https://git.merproject.org/mer-core/sensorfw.git" rpm/sensorfw-qt5-hybris.spec || die
 buildmw geoclue-providers-hybris || die
 read -p '"Build HA Middleware Packages built". Press Enter to continue.'
 popd
