@@ -69,8 +69,7 @@ rm -rf $ANDROID_ROOT/hybris/mw
 mkdir -p $ANDROID_ROOT/hybris/mw
 pushd $ANDROID_ROOT/hybris/mw
 
-buildmw "https://github.com/rinigus/libhybris.git" || die
-#buildmw libhybris || die
+buildmw libhybris || die
 sb2 -t $VENDOR-$DEVICE-$ARCH -R -msdk-install zypper -n rm mesa-llvmpipe
 buildmw "https://github.com/nemomobile/mce-plugin-libhybris.git" || die
 buildmw ngfd-plugin-droid-vibrator || die
